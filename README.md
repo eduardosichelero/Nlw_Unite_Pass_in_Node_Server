@@ -81,9 +81,37 @@ CREATE UNIQUE INDEX "attendees_event_id_email_key" ON "attendees"("event_id", "e
 CREATE UNIQUE INDEX "check_ins_attendeeId_key" ON "check_ins"("attendeeId");
 ```
 
-# Init com Pass in Web
+# Para rodar o backend do projeto, siga as instruções abaixo
+
+## Instalação das Dependências
+
+Primeiro, você precisa instalar todas as dependências necessárias para o projeto. Para isso, execute o seguinte comando no terminal:
+
+```node
+npm i
+```
+
+## Seed do Banco de Dados
+
+Após a instalação das dependências, é necessário popular o banco de dados com os dados iniciais. Isso pode ser feito utilizando o Prisma para executar o comando de seed. Execute o seguinte comando no terminal:
+
 
 ```node
 npx prisma db seed
-
 ```
+
+## Execução do Projeto
+
+Por fim, para iniciar o servidor de desenvolvimento e começar a utilizar o backend do projeto, execute o comando:
+
+
+```node
+npm run dev
+```
+
+Este comando iniciará o servidor em modo de desenvolvimento, permitindo que você faça alterações no código e veja as mudanças em tempo real sem precisar reiniciar o servidor manualmente.
+
+**Lembre-se:**
+
+- Você precisa ter o Node.js e o npm instalados em sua máquina.
+- Certifique-se de estar na pasta raiz do projeto antes de executar os comandos.
