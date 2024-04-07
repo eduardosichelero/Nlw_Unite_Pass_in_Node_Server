@@ -1,47 +1,44 @@
-# pass.in
+# Pass.in: Gestão de Participantes em Eventos Presenciais
 
-O pass.in é uma aplicação de **gestão de participantes em eventos presenciais**. 
+![Texto Alternativo](images/Projeto_Open_Prisma.png)
 
-A ferramenta permite que o organizador cadastre um evento e abra uma página pública de inscrição.
 
-Os participantes inscritos podem emitir uma credencial para check-in no dia do evento.
+O Pass.in é uma aplicação de **gestão de participantes em eventos presenciais**, desenvolvida em Python com Flask e SQLAlchemy para o backend, e SQLite para o banco de dados. A ferramenta permite que o organizador cadastre um evento e abra uma página pública de inscrição. Os participantes inscritos podem emitir uma credencial para check-in no dia do evento, e o sistema fará um scan da credencial do participante para permitir a entrada no evento.
 
-O sistema fará um scan da credencial do participante para permitir a entrada no evento.
+## 📝 Requisitos
 
-## Requisitos
-
-### Requisitos funcionais
+### Requisitos Funcionais
 
 - [x] O organizador deve poder cadastrar um novo evento;
 - [x] O organizador deve poder visualizar dados de um evento;
-- [x] O organizador deve poser visualizar a lista de participantes; 
+- [x] O organizador deve poder visualizar a lista de participantes;
 - [x] O participante deve poder se inscrever em um evento;
 - [x] O participante deve poder visualizar seu crachá de inscrição;
 - [x] O participante deve poder realizar check-in no evento;
 
-### Regras de negócio
+### Regras de Negócio
 
 - [x] O participante só pode se inscrever em um evento uma única vez;
 - [x] O participante só pode se inscrever em eventos com vagas disponíveis;
 - [x] O participante só pode realizar check-in em um evento uma única vez;
 
-### Requisitos não-funcionais
+### Requisitos Não-Funcionais
 
 - [x] O check-in no evento será realizado através de um QRCode;
 
-## Documentação da API (Swagger)
+## 📚 Documentação da API (Swagger)
 
-Para documentação da API, acesse o link: https://nlw-unite-nodejs.onrender.com/docs
+Para documentação da API, acesse o link: [https://nlw-unite-nodejs.onrender.com/docs](https://nlw-unite-nodejs.onrender.com/docs)
 
-## Banco de dados
+## 🗄️ Banco de Dados
 
-Nessa aplicação vamos utilizar banco de dados relacional (SQL). Para ambiente de desenvolvimento seguiremos com o SQLite pela facilidade do ambiente.
+Nessa aplicação, utilizamos banco de dados relacional (SQL). Para ambiente de desenvolvimento, seguimos com o SQLite pela facilidade do ambiente.
 
 ### Diagrama ERD
 
 <img src=".github/erd.svg" width="600" alt="Diagrama ERD do banco de dados" />
 
-### Estrutura do banco (SQL)
+### Estrutura do Banco (SQL)
 
 ```sql
 -- CreateTable
@@ -81,37 +78,49 @@ CREATE UNIQUE INDEX "attendees_event_id_email_key" ON "attendees"("event_id", "e
 CREATE UNIQUE INDEX "check_ins_attendeeId_key" ON "check_ins"("attendeeId");
 ```
 
-# Para rodar o backend do projeto, siga as instruções abaixo
+## 🚀 Para Rodar o Backend do Projeto, Siga as Instruções Abaixo
 
-## Instalação das Dependências
+### Instalação das Dependências
 
 Primeiro, você precisa instalar todas as dependências necessárias para o projeto. Para isso, execute o seguinte comando no terminal:
 
-```node
-npm i
+```bash
+pip install -r requirements.txt
 ```
 
-## Seed do Banco de Dados
+### Seed do Banco de Dados
 
-Após a instalação das dependências, é necessário popular o banco de dados com os dados iniciais. Isso pode ser feito utilizando o Prisma para executar o comando de seed. Execute o seguinte comando no terminal:
+Após a instalação das dependências, é necessário popular o banco de dados com os dados iniciais. Isso pode ser feito utilizando o SQL para executar o comando de seed. Execute o seguinte comando no terminal:
 
-
-```node
-npx prisma db seed
+```bash
+python seed.py
 ```
 
-## Execução do Projeto
+### Execução do Projeto
 
 Por fim, para iniciar o servidor de desenvolvimento e começar a utilizar o backend do projeto, execute o comando:
 
-
-```node
-npm run dev
+```bash
+python app.py
 ```
 
 Este comando iniciará o servidor em modo de desenvolvimento, permitindo que você faça alterações no código e veja as mudanças em tempo real sem precisar reiniciar o servidor manualmente.
 
 **Lembre-se:**
 
-- Você precisa ter o Node.js e o npm instalados em sua máquina.
+- Você precisa ter o Python e o pip instalados em sua máquina.
 - Certifique-se de estar na pasta raiz do projeto antes de executar os comandos.
+
+## 🌐 Versão Web
+
+Para a versão web do Pass.in, que permite aos participantes se inscreverem e realizarem check-in através de uma interface amigável, acesse o repositório: [Pass.in Web API](https://github.com/eduardosichelero/Nlw_Unite_Pass_in_web_api)
+
+### 🔗 Integração
+
+A integração entre a versão web e o backend é feita através de requisições HTTP, utilizando a API RESTful desenvolvida com Flask. A versão web consome os endpoints da API para realizar as operações de inscrição, visualização de crachá, e check-in.
+
+- **Inscrição**: A versão web envia uma requisição POST para o endpoint de inscrição, incluindo os dados do participante no corpo da requisição.
+- **Visualização de Crachá**: A versão web envia uma requisição GET para o endpoint de visualização de crachá, utilizando o ID do participante como parâmetro.
+- **Check-in**: A versão web envia uma requisição POST para o endpoint de check-in, incluindo o ID do participante no corpo da requisição.
+
+Essa integração permite que os participantes interajam com o sistema de forma intuitiva, sem a necessidade de lidar diretamente com a API.
