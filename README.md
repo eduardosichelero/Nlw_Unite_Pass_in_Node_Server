@@ -2,8 +2,7 @@
 
 ![Texto Alternativo](images/Projeto_Open_Prisma.png)
 
-
-O Pass.in é uma aplicação de **gestão de participantes em eventos presenciais**, desenvolvida em Python com Flask e SQLAlchemy para o backend, e SQLite para o banco de dados. A ferramenta permite que o organizador cadastre um evento e abra uma página pública de inscrição. Os participantes inscritos podem emitir uma credencial para check-in no dia do evento, e o sistema fará um scan da credencial do participante para permitir a entrada no evento.
+O Pass.in é uma aplicação de **gestão de participantes em eventos presenciais**, desenvolvida em Node.js com Express e Prisma para o backend, e SQLite para o banco de dados. A ferramenta permite que o organizador cadastre um evento e abra uma página pública de inscrição. Os participantes inscritos podem emitir uma credencial para check-in no dia do evento, e o sistema fará um scan da credencial do participante para permitir a entrada no evento.
 
 ## 📝 Requisitos
 
@@ -85,15 +84,15 @@ CREATE UNIQUE INDEX "check_ins_attendeeId_key" ON "check_ins"("attendeeId");
 Primeiro, você precisa instalar todas as dependências necessárias para o projeto. Para isso, execute o seguinte comando no terminal:
 
 ```bash
-pip install -r requirements.txt
+npm i
 ```
 
 ### Seed do Banco de Dados
 
-Após a instalação das dependências, é necessário popular o banco de dados com os dados iniciais. Isso pode ser feito utilizando o SQL para executar o comando de seed. Execute o seguinte comando no terminal:
+Após a instalação das dependências, é necessário popular o banco de dados com os dados iniciais. Isso pode ser feito utilizando o Prisma para executar o comando de seed. Execute o seguinte comando no terminal:
 
 ```bash
-python seed.py
+npx prisma db seed
 ```
 
 ### Execução do Projeto
@@ -101,14 +100,14 @@ python seed.py
 Por fim, para iniciar o servidor de desenvolvimento e começar a utilizar o backend do projeto, execute o comando:
 
 ```bash
-python app.py
+npm run dev
 ```
 
 Este comando iniciará o servidor em modo de desenvolvimento, permitindo que você faça alterações no código e veja as mudanças em tempo real sem precisar reiniciar o servidor manualmente.
 
 **Lembre-se:**
 
-- Você precisa ter o Python e o pip instalados em sua máquina.
+- Você precisa ter o Node.js instalados em sua máquina.
 - Certifique-se de estar na pasta raiz do projeto antes de executar os comandos.
 
 ## 🌐 Versão Web
@@ -117,7 +116,7 @@ Para a versão web do Pass.in, que permite aos participantes se inscreverem e re
 
 ### 🔗 Integração
 
-A integração entre a versão web e o backend é feita através de requisições HTTP, utilizando a API RESTful desenvolvida com Flask. A versão web consome os endpoints da API para realizar as operações de inscrição, visualização de crachá, e check-in.
+A integração entre a versão web e o backend é feita através de requisições HTTP, utilizando a API RESTful desenvolvida com Express. A versão web consome os endpoints da API para realizar as operações de inscrição, visualização de crachá, e check-in.
 
 - **Inscrição**: A versão web envia uma requisição POST para o endpoint de inscrição, incluindo os dados do participante no corpo da requisição.
 - **Visualização de Crachá**: A versão web envia uma requisição GET para o endpoint de visualização de crachá, utilizando o ID do participante como parâmetro.
